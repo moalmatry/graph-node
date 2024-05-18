@@ -30,6 +30,19 @@ const resolvers = {
       return db.reviews.filter((r) => r.game_id === parent.id);
     },
   },
+  Author: {
+    reviews(parent) {
+      return db.reviews.filter((r) => r.author_id === parent.id);
+    },
+  },
+  Review: {
+    author(parent) {
+      return db.authors.find((a) => a.id === parent.author_id);
+    },
+    game(parent) {
+      return db.games.find((a) => a.id === parent.author_id);
+    },
+  },
 };
 
 const server = new ApolloServer({
